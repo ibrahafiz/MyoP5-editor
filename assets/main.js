@@ -1,12 +1,5 @@
-var forceTranslation = true;
-var LOGGED_IN = false;
 
-const DIRECT_API_LUIS = "https://westus.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/04a6b73e-624a-4b4a-b333-743a5c41f1d8/slots/staging/predict?subscription-key=1ec28eb72f0348ee8be3dac05b8f1a0a&verbose=true&show-all-intents=true&log=true&query=";
-const TRANS_API = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en"
-const TRANS_HEADER = {
-    'Ocp-Apim-Subscription-Key': '3775a0d97cd240c58c66788f35de2270',
-    'Content-type': 'application/json'
-}
+var LOGGED_IN = false;
 
 
 function signIn() {
@@ -34,9 +27,24 @@ function getCodeResponse(raw_code) {
     })
 }
 
-var quill = new Quill('#editor', {
-    theme: 'snow'
-});
+
+var quill;
+var timer;
+var changed = false;
+
+function play() {
+    //let txt = $('textarea#prgm-setup').val() + "~`~" + $('textarea#prgm-loop').val();
+    //let txt = $('#prgm-setup').text() + "~`~" + $('#prgm-loop').text();
+    //let txt = document.getElementById('prgm-setup').value + "\n~`~\n" + document.getElementById('prgm-loop').value;
+    //let lines = txt.split('\n');
+
+    var str = quill.getText();
+    //var result = str.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
+    var result = str.split('\n').slice(0,-1);
+    directLuis(result);
+    
+    console.log(result);
+}
 
 var ready = (callback) => {
     if (document.readyState != "loading") callback();
@@ -45,22 +53,59 @@ var ready = (callback) => {
 
 ready(() => {
 
-    document.querySelector("#play").addEventListener("click", (e) => {
-        //let txt = $('textarea#prgm-setup').val() + "~`~" + $('textarea#prgm-loop').val();
-        //let txt = $('#prgm-setup').text() + "~`~" + $('#prgm-loop').text();
-        //let txt = document.getElementById('prgm-setup').value + "\n~`~\n" + document.getElementById('prgm-loop').value;
-        //let lines = txt.split('\n');
-
-        var str = quill.getText();
-        //var result = str.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
-        var result = str.split('\n').slice(0,-1);
-        directLuis(result);
-        
-        console.log(result);
-
+    quill = new Quill('#editor', {
+        theme: 'bubble'
     });
 
-    //console.log("4".padStart(4, "0"));
+    //const binding = new QuillBinding(type, quill, provider.awareness)
+
+    var prev = localStorage.getItem('last-state');
+    if (prev != null) {
+        quill.root.innerHTML = prev;
+        setTimeout(function(){
+            play();
+        }, 100);
+    }
+
+    quill.on('selection-change', function(range, oldRange, source) {
+        if (range) {
+          if (range.length == 0) {
+            if (changed) {
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    localStorage.setItem('last-state', quill.root.innerHTML);
+                    play();
+                }, 3000);
+                changed = false;
+            }
+            console.log('User cursor is on', range.index);
+          } else {
+            var text = quill.getText(range.index, range.length);
+            console.log('User has highlighted', text);
+          }
+        } else {
+          console.log('Cursor not in the editor');
+        }
+    });
+
+    quill.on('text-change', function(delta, oldDelta, source) {
+        if (source == 'api') {
+          console.log("An API call triggered this change.");
+        } else if (source == 'user') {
+            clearTimeout(timer);
+            changed = true;
+            timer = setTimeout(function(){
+                localStorage.setItem('last-state', quill.root.innerHTML);
+                play();
+            }, 8000);
+          console.log("A user action triggered this change.");
+        }
+    });
+
+    document.querySelector("#play").addEventListener("click", (e) => {
+        play();
+    });
+
 
     document.querySelector("#sign-in").addEventListener("click", (e) => {
         location.href="https://myocode.azurewebsites.net/.auth/login?post_login_redirect_url=http://127.0.0.1:5500/main.html"
