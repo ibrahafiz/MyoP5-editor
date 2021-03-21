@@ -1,0 +1,223 @@
+
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" integrity="sha512-pDpLmYKym2pnF0DNYDKxRnOk1wkM9fISpSOjt8kWFKQeDmBTjSnBZhTd41tXwh8+bRMoSaFsRnznZUiH9i3pxA==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js" integrity="sha512-+cXPhsJzyjNGFm5zE+KPEX4Vr/1AbqCUuzAS8Cy5AfLEWm9+UI9OySleqLiSQOQ5Oa2UrzaeAOijhvV/M4apyQ==" crossorigin="anonymous"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+    <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
+    <script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+    -->
+    
+
+
+    
+textarea {
+  resize: none;
+  width: 100%;
+  border: 0;
+  height: 40px;
+}
+
+#firepad-container {
+  width: 100%;
+  height: calc(90vh - 100px);
+}
+
+
+h3 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  color: grey;
+}
+
+.textarea {
+  font-family: inherit;
+  font-size: inherit;
+  display: block;
+  background-color: white;
+  border-radius: 3px;
+}
+
+
+
+
+a {
+  font-style: normal;
+  text-decoration: none;
+  font-weight: 700;
+  color: rgb(109, 71, 109);
+}
+
+
+
+
+#logo {
+  margin-bottom: 0px;
+  background-color: white;
+}
+
+
+
+                        <button id="stop">◼ Stop</button>
+
+
+
+
+function init() {
+    // Initialize Firebase.
+    // TODO: replace with your Firebase project configuration.
+    var config = {
+        apiKey: "AIzaSyDUU0s1VUW53mN8Wq_gwhzbEG6SZSSJsGU",
+        authDomain: "myotics-5e3ae.firebaseapp.com",
+        databaseURL: "https://myotics-5e3ae-default-rtdb.firebaseio.com"
+    };
+    firebase.initializeApp(config);
+    //// Get Firebase Database reference.
+    var firepadRef = getExampleRef();
+
+    //// Create CodeMirror (with lineWrapping on).
+    var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
+        lineWrapping: true
+    });
+
+    //// Create Firepad (with rich text toolbar and shortcuts enabled).
+    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+        richTextToolbar: true,
+        richTextShortcuts: true,
+        defaultText: "Begin Coding!"
+    });
+
+    //// Initialize contents.
+    firepad.on('ready', function () {
+        if (firepad.isHistoryEmpty()) {
+            firepad.setHtml(
+                '<span style="font-size: 24px;">Rich-text editing with <span style="color: red">Firepad!</span></span><br/>\n' +
+                '<br/>' +
+                '<div style="font-size: 18px">' +
+                'Supports:<br/>' +
+                '<ul>' +
+                '<li>Different ' +
+                '<span style="font-family: impact">fonts,</span>' +
+                '<span style="font-size: 24px;"> sizes, </span>' +
+                '<span style="color: blue">and colors.</span>' +
+                '</li>' +
+                '<li>' +
+                '<b>Bold, </b>' +
+                '<i>italic, </i>' +
+                '<u>and underline.</u>' +
+                '</li>' +
+                '<li>Lists' +
+                '<ol>' +
+                '<li>One</li>' +
+                '<li>Two</li>' +
+                '</ol>' +
+                '</li>' +
+                '<li>Undo / redo</li>' +
+                '<li>Cursor / selection synchronization.</li>' +
+                '<li><checkbox></checkbox> It supports customized entities.</li>' +
+                '<li>And it\'s all fully collaborative!</li>' +
+                '</ul>' +
+                '</div>');
+        }
+    });
+
+    // Helper to get hash from end of URL or generate a random one.
+    function getExampleRef() {
+        var ref = firebase.database().ref();
+        var hash = window.location.hash.replace(/#/g, '');
+        if (hash) {
+            ref = ref.child(hash);
+        } else {
+            ref = ref.push(); // generate unique location.
+            window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
+        }
+        if (typeof console !== 'undefined') {
+            console.log('Firebase data: ', ref.toString());
+        }
+        return ref;
+    }
+
+
+}
+
+
+
+
+$('#summernote').summernote({
+    lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+    toolbar: [
+      // [groupName, [list of button]]
+      ['style', ['style','bold', 'italic', 'underline', 'clear']],
+      ['font', ['strikethrough']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['view', ['codeview','help']],
+    ],
+    height:300
+  });
+
+  $('.note-editable').css('line-height', 0.5);
+
+
+    function OnInput() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    }
+    
+    
+
+    document.querySelector("#stop").addEventListener("click", (e) => {
+        if (myp5 != null) {
+            myp5.remove();
+        }
+    });
+
+
+
+
+function openTab(evt, tabName) {
+    if (tabName == "Create" && !LOGGED_IN) {
+        loggedIn();
+    }
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+}
+
+
+    // For text area
+    const tx = document.getElementsByTagName('textarea');
+    for (let i = 0; i < tx.length; i++) {
+        tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight + 50) + 'px;overflow-y:hidden;');
+        tx[i].addEventListener("input", OnInput, false);
+    }

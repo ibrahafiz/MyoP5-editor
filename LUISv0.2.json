@@ -1,0 +1,3778 @@
+{
+  "luis_schema_version": "7.0.0",
+  "intents": [
+    {
+      "name": "Code",
+      "features": []
+    },
+    {
+      "name": "If",
+      "features": [
+        {
+          "modelName": "condition",
+          "isRequired": false
+        },
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "None",
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "p5.Background",
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "p5.Circle",
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "p5.Fill",
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "p5.Rect",
+      "features": []
+    },
+    {
+      "name": "p5.Text",
+      "features": []
+    },
+    {
+      "name": "Var",
+      "features": []
+    }
+  ],
+  "entities": [
+    {
+      "name": "condition",
+      "children": [
+        {
+          "name": "item1",
+          "children": [],
+          "features": []
+        },
+        {
+          "name": "compare",
+          "children": [],
+          "features": [
+            {
+              "modelName": "Conditionals",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "name": "item2",
+          "children": [],
+          "features": []
+        }
+      ],
+      "roles": [],
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "param",
+      "children": [
+        {
+          "name": "name",
+          "children": [],
+          "features": [
+            {
+              "featureName": "comparison",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "name": "value",
+          "children": [],
+          "features": [
+            {
+              "featureName": "comparison",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "roles": [],
+      "features": [
+        {
+          "featureName": "comparison",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "hierarchicals": [],
+  "composites": [],
+  "closedLists": [
+    {
+      "name": "Conditionals",
+      "subLists": [
+        {
+          "canonicalForm": "equal",
+          "list": [
+            "equals",
+            "same as",
+            "identical to"
+          ]
+        },
+        {
+          "canonicalForm": "not equal",
+          "list": [
+            "does not equal",
+            "unequal to",
+            "is different than"
+          ]
+        },
+        {
+          "canonicalForm": "greater than",
+          "list": [
+            "much greater than",
+            "bigger than"
+          ]
+        },
+        {
+          "canonicalForm": "less than",
+          "list": [
+            "much less than",
+            "way little than"
+          ]
+        },
+        {
+          "canonicalForm": "greater than or equal to",
+          "list": []
+        },
+        {
+          "canonicalForm": "less than or equal to",
+          "list": []
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "p5Variables",
+      "subLists": [
+        {
+          "canonicalForm": "windowHeight",
+          "list": [
+            "window height",
+            "height of window"
+          ]
+        },
+        {
+          "canonicalForm": "mouseX",
+          "list": [
+            "X position of mouse",
+            "mouse X position",
+            "where mouse is in X",
+            "X location of mouse"
+          ]
+        },
+        {
+          "canonicalForm": "mouseY",
+          "list": [
+            "y position of mouse",
+            "mouse Y position",
+            "cursor location in Y position",
+            "mouse Y location"
+          ]
+        },
+        {
+          "canonicalForm": "mouseIsPressed",
+          "list": [
+            "mouse is pressed",
+            "mouse button pressed",
+            "mouse button clicked",
+            "mouse clicked",
+            "mouse pressed"
+          ]
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "Var Modifier",
+      "subLists": [
+        {
+          "canonicalForm": "increase",
+          "list": [
+            "add",
+            " more"
+          ]
+        },
+        {
+          "canonicalForm": "decrease",
+          "list": [
+            "subtract",
+            "remove",
+            "take away",
+            "take"
+          ]
+        },
+        {
+          "canonicalForm": "multiply",
+          "list": []
+        },
+        {
+          "canonicalForm": "divide",
+          "list": []
+        }
+      ],
+      "roles": []
+    }
+  ],
+  "prebuiltEntities": [
+    {
+      "name": "ordinal",
+      "roles": []
+    }
+  ],
+  "utterances": [
+    {
+      "text": "\"cat\" equals word 87",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 0,
+          "endPos": 19,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 1,
+              "endPos": 3,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 13,
+              "endPos": 19,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "a circle that is 23 right and 56 down and diameter of 89",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 17,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 30,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 30,
+              "endPos": 31,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 33,
+              "endPos": 36,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 42,
+          "endPos": 55,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 42,
+              "endPos": 49,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 54,
+              "endPos": 55,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "at position x of \"rand\" and position y of 'test' make a circle with diameter of 34",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 3,
+          "endPos": 22,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 12,
+              "endPos": 12,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 18,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 28,
+          "endPos": 47,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 37,
+              "endPos": 37,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 43,
+              "endPos": 46,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 68,
+          "endPos": 81,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 68,
+              "endPos": 75,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 80,
+              "endPos": 81,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "change background color to 43 red and 34 blue",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 38,
+          "endPos": 44,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 38,
+              "endPos": 39,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 41,
+              "endPos": 44,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "change background color to 43 red and 34 blue and 89 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 38,
+          "endPos": 44,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 38,
+              "endPos": 39,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 41,
+              "endPos": 44,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 50,
+          "endPos": 57,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 50,
+              "endPos": 51,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 53,
+              "endPos": 57,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "change fill to red 34 and blue 43 and green 98",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 15,
+          "endPos": 20,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 15,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 19,
+              "endPos": 20,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 29,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 31,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 38,
+          "endPos": 45,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 38,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 44,
+              "endPos": 45,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "color the shape red 43 and blue 98",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 21,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 16,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 20,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 33,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 27,
+              "endPos": 30,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 33,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "do if \"text\" is equal to 983",
+      "intent": "If",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 3,
+          "endPos": 27,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 7,
+              "endPos": 10,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 13,
+              "endPos": 23,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at position \"_p.mousex\" x and 67 y with diameter of 23",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 38,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 35,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 38,
+              "endPos": 38,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 44,
+          "endPos": 47,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 44,
+              "endPos": 45,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 47,
+              "endPos": 47,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 54,
+          "endPos": 67,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 54,
+              "endPos": 61,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 66,
+              "endPos": 67,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at position 40 x and 67 y with diameter of 23",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 29,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 26,
+              "endPos": 27,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 29,
+              "endPos": 29,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 35,
+          "endPos": 38,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 35,
+              "endPos": 36,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 38,
+              "endPos": 38,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 45,
+          "endPos": 58,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 45,
+              "endPos": 52,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 58,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at x position \"word\" and 67 y with diameter of 23",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 33,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 29,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 39,
+          "endPos": 42,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 39,
+              "endPos": 40,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 42,
+              "endPos": 42,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 49,
+          "endPos": 62,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 49,
+              "endPos": 56,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 61,
+              "endPos": 62,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at x position of \"cat\" and y position of \"yelp\" with diameter of 230",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 35,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 34,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 41,
+          "endPos": 60,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 41,
+              "endPos": 41,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 56,
+              "endPos": 59,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 67,
+          "endPos": 81,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 67,
+              "endPos": 74,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 79,
+              "endPos": 81,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at x position of \"word\" and 67 y with diameter of 23",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 35,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 42,
+          "endPos": 45,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 42,
+              "endPos": 43,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 45,
+              "endPos": 45,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 52,
+          "endPos": 65,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 52,
+              "endPos": 59,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 64,
+              "endPos": 65,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at x position of \"word\" and y position of \"yelp\" with diameter of 23",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 35,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 42,
+          "endPos": 61,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 42,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 60,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 68,
+          "endPos": 81,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 68,
+              "endPos": 75,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 80,
+              "endPos": 81,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle at x position of \"word\" and y position of \"yelp\" with diameter of 230",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 35,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 42,
+          "endPos": 61,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 42,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 60,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 68,
+          "endPos": 82,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 68,
+              "endPos": 75,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 80,
+              "endPos": 82,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a circle having radius of 32 and at location 23 in x and 59 in y",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 21,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 21,
+              "endPos": 26,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 31,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 50,
+          "endPos": 56,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 50,
+              "endPos": 51,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 56,
+              "endPos": 56,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 62,
+          "endPos": 68,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 62,
+              "endPos": 63,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 68,
+              "endPos": 68,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw a rectangle at position 34 in x and 89 in y with width of 47 and height of 5",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 29,
+          "endPos": 35,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 29,
+              "endPos": 30,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 35,
+              "endPos": 35,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 41,
+          "endPos": 47,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 41,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 47,
+              "endPos": 47,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 54,
+          "endPos": 64,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 54,
+              "endPos": 58,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 63,
+              "endPos": 64,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 70,
+          "endPos": 80,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 70,
+              "endPos": 75,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 80,
+              "endPos": 80,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw circle at position 23 x and 87 y with width 200",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 24,
+          "endPos": 27,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 24,
+              "endPos": 25,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 27,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 33,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 33,
+              "endPos": 34,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 36,
+              "endPos": 36,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 43,
+          "endPos": 51,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 43,
+              "endPos": 47,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 49,
+              "endPos": 51,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw circle in x position at \"pose\" and y position at \"h\" with radius of 18",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 15,
+          "endPos": 34,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 15,
+              "endPos": 15,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 30,
+              "endPos": 33,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 40,
+          "endPos": 56,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 40,
+              "endPos": 40,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 55,
+              "endPos": 55,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 63,
+          "endPos": 74,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 63,
+              "endPos": 68,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 73,
+              "endPos": 74,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw rect with x 23 y 78 w 90 and h 7",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 15,
+          "endPos": 18,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 15,
+              "endPos": 15,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 17,
+              "endPos": 18,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 20,
+          "endPos": 23,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 20,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 23,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 25,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 25,
+              "endPos": 25,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 34,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 34,
+              "endPos": 34,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 36,
+              "endPos": 36,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "draw rectangle at position 50 x and 43 y and a height of 100 and width of 300",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 30,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 30,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 36,
+          "endPos": 39,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 36,
+              "endPos": 37,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 39,
+              "endPos": 39,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 45,
+          "endPos": 59,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 47,
+              "endPos": 52,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 59,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 65,
+          "endPos": 76,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 65,
+              "endPos": 69,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 74,
+              "endPos": 76,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "fill color becomes 23 red, 98 green, and 145 blue",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 19,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 19,
+              "endPos": 20,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 34,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 34,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 41,
+          "endPos": 48,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 41,
+              "endPos": 43,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 45,
+              "endPos": 48,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "fill shape colour 200 red",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 18,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 18,
+              "endPos": 20,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "fill shape with color 23 red and 98 blue",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 27,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 23,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 33,
+          "endPos": 39,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 33,
+              "endPos": 34,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 36,
+              "endPos": 39,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "good job",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i dont undestand",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i need to back a cake soon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i wante to go hame",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "if \"23\" is equal to \"24\" draw rectangle at horizontal of 54 and vertical of 43",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 23,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 5,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 8,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "item1",
+              "startPos": 21,
+              "endPos": 22,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 43,
+          "endPos": 58,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 43,
+              "endPos": 52,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 58,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 64,
+          "endPos": 77,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 64,
+              "endPos": 71,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 76,
+              "endPos": 77,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if \"23\" is greater than \"100\" draw rectangle at position 50 x and 43 y and a height of 100 and width of 300",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 5,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 8,
+              "endPos": 22,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 57,
+          "endPos": 60,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 58,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 60,
+              "endPos": 60,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 66,
+          "endPos": 69,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 66,
+              "endPos": 67,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 69,
+              "endPos": 69,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 75,
+          "endPos": 89,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 77,
+              "endPos": 82,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 87,
+              "endPos": 89,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 95,
+          "endPos": 106,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 95,
+              "endPos": 99,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 104,
+              "endPos": 106,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if \"23\" is less than \"100\" draw rectangle at position 50 x and 43 y and a height of 100 and width of 300",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 25,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 5,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 8,
+              "endPos": 19,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 54,
+          "endPos": 57,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 54,
+              "endPos": 55,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 57,
+              "endPos": 57,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 63,
+          "endPos": 66,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 63,
+              "endPos": 64,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 66,
+              "endPos": 66,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 72,
+          "endPos": 86,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 74,
+              "endPos": 79,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 84,
+              "endPos": 86,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 92,
+          "endPos": 103,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 92,
+              "endPos": 96,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 101,
+              "endPos": 103,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if \"432\" is greater than 89 then draw the square that is 34 units wide",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 26,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 6,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 9,
+              "endPos": 23,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 25,
+              "endPos": 26,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 57,
+          "endPos": 69,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 57,
+              "endPos": 58,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 66,
+              "endPos": 69,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if \"n + 43\" > \"7 + 9\" then say \"welcome here hello\" at position 34 in x and 89 in y",
+      "intent": "p5.Text",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 3,
+          "endPos": 20,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 9,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 12,
+              "endPos": 12,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 15,
+              "endPos": 19,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 64,
+          "endPos": 70,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 64,
+              "endPos": 65,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 70,
+              "endPos": 70,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 76,
+          "endPos": 82,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 76,
+              "endPos": 77,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 82,
+              "endPos": 82,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if \"word\" is less than \"34*4\" then draw circle with width of 90",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 33,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 4,
+              "endPos": 7,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 10,
+              "endPos": 21,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 24,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 52,
+          "endPos": 62,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 52,
+              "endPos": 56,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 61,
+              "endPos": 62,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "if x is greater than 5 then put circle at horizontal position of 34 and vertical position of 12 with diameter of 32",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 0,
+          "endPos": 26,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 3,
+              "endPos": 3,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 5,
+              "endPos": 19,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 21,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 42,
+          "endPos": 66,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 42,
+              "endPos": 51,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 65,
+              "endPos": 66,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 72,
+          "endPos": 94,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 72,
+              "endPos": 79,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 93,
+              "endPos": 94,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 101,
+          "endPos": 114,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 101,
+              "endPos": 108,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 113,
+              "endPos": 114,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "increase number by 4",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 9,
+          "endPos": 19,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 9,
+              "endPos": 14,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 19,
+              "endPos": 19,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "let g = 893+54-21",
+      "intent": "Var",
+      "entities": []
+    },
+    {
+      "text": "make \"jeep\" equal to 3+5-1",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 5,
+          "endPos": 25,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 6,
+              "endPos": 9,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 21,
+              "endPos": 25,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make \"string\" equal to \"welcome ! this is everything\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 5,
+          "endPos": 52,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 6,
+              "endPos": 11,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 24,
+              "endPos": 51,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make a circle at position x of \"j\" and position y of \"k\" and radius of 67",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 33,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 26,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 32,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 39,
+          "endPos": 55,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 48,
+              "endPos": 48,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 54,
+              "endPos": 54,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 61,
+          "endPos": 72,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 61,
+              "endPos": 66,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 71,
+              "endPos": 72,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make a circle with position 43 in x and 54 in y and have diameter of 20",
+      "intent": "p5.Circle",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 28,
+          "endPos": 34,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 28,
+              "endPos": 29,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 34,
+              "endPos": 34,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 40,
+          "endPos": 46,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 40,
+              "endPos": 41,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 46,
+              "endPos": 46,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 57,
+          "endPos": 70,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 57,
+              "endPos": 64,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 69,
+              "endPos": 70,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make a square at location \"best\" in horizontal and \"4+2-1\" in vertical and 34 wide",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 45,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 30,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 36,
+              "endPos": 45,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 51,
+          "endPos": 69,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 52,
+              "endPos": 56,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 62,
+              "endPos": 69,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 75,
+          "endPos": 81,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 75,
+              "endPos": 76,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 78,
+              "endPos": 81,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 200 blue",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 23,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 23,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 23 red and 43 blue",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 21,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 19,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 27,
+          "endPos": 33,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 27,
+              "endPos": 28,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 33,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 23 red, 134 blue and 223 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 21,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 19,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 24,
+          "endPos": 31,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 24,
+              "endPos": 26,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 28,
+              "endPos": 31,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 37,
+          "endPos": 45,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 37,
+              "endPos": 39,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 41,
+              "endPos": 45,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 233 red, 134 blue and 0 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 22,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 22,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 25,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 29,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 38,
+          "endPos": 44,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 38,
+              "endPos": 38,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 40,
+              "endPos": 44,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 233 red, 134 blue and 98 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 22,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 18,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 22,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 25,
+          "endPos": 32,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 29,
+              "endPos": 32,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 38,
+          "endPos": 45,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 38,
+              "endPos": 39,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 41,
+              "endPos": 45,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 34 red",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 21,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 19,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background 83 red 83 blue 66 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 16,
+          "endPos": 21,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 16,
+              "endPos": 17,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 19,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 23,
+          "endPos": 29,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 23,
+              "endPos": 24,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 29,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 31,
+          "endPos": 38,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 31,
+              "endPos": 32,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 34,
+              "endPos": 38,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background color 134 red and 38 blue and 390 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 34,
+          "endPos": 40,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 34,
+              "endPos": 35,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 37,
+              "endPos": 40,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 46,
+          "endPos": 54,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 46,
+              "endPos": 48,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 50,
+              "endPos": 54,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background color 134 red and 38 blue and 65 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 34,
+          "endPos": 40,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 34,
+              "endPos": 35,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 37,
+              "endPos": 40,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 46,
+          "endPos": 53,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 46,
+              "endPos": 47,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 49,
+              "endPos": 53,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background color 25 red 50 blue and 80 green",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 27,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 23,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 29,
+          "endPos": 35,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 29,
+              "endPos": 30,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 32,
+              "endPos": 35,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 41,
+          "endPos": 48,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 41,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 44,
+              "endPos": 48,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background color 34 red and 38 blue and 90 green~`~",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 27,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 23,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 33,
+          "endPos": 39,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 33,
+              "endPos": 34,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 36,
+              "endPos": 39,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 45,
+          "endPos": 52,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 45,
+              "endPos": 46,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 48,
+              "endPos": 52,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make background color to red 24",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 25,
+          "endPos": 30,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 25,
+              "endPos": 27,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 29,
+              "endPos": 30,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make color 89 red and 2 green and 19 blue",
+      "intent": "p5.Fill",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 11,
+          "endPos": 16,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 11,
+              "endPos": 12,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 14,
+              "endPos": 16,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 22,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 22,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 24,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 34,
+          "endPos": 40,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 34,
+              "endPos": 35,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 37,
+              "endPos": 40,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "make my variable dog contain \"age+date\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 17,
+          "endPos": 38,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 19,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 30,
+              "endPos": 37,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "only if \"time\" is less than 3 then",
+      "intent": "If",
+      "entities": [
+        {
+          "entity": "condition",
+          "startPos": 5,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "item1",
+              "startPos": 9,
+              "endPos": 12,
+              "children": []
+            },
+            {
+              "entity": "compare",
+              "startPos": 15,
+              "endPos": 26,
+              "children": []
+            },
+            {
+              "entity": "item2",
+              "startPos": 28,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "rectangle at x pose of 32 y pose of 89 and width of 5 and height of 9",
+      "intent": "p5.Rect",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 13,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 13,
+              "endPos": 13,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 23,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 26,
+          "endPos": 37,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 26,
+              "endPos": 26,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 36,
+              "endPos": 37,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 43,
+          "endPos": 52,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 43,
+              "endPos": 47,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 52,
+              "endPos": 52,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 58,
+          "endPos": 68,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 58,
+              "endPos": 63,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 68,
+              "endPos": 68,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "reset background to green 100 and red 200",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 20,
+          "endPos": 28,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 20,
+              "endPos": 24,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 26,
+              "endPos": 28,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 34,
+          "endPos": 40,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 34,
+              "endPos": 36,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 38,
+              "endPos": 40,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "sentence is \"hello world\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 0,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 0,
+              "endPos": 7,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 13,
+              "endPos": 23,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "set background as red 134 and blue 83",
+      "intent": "p5.Background",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 18,
+          "endPos": 24,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 18,
+              "endPos": 20,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 22,
+              "endPos": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 30,
+          "endPos": 36,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 30,
+              "endPos": 33,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 35,
+              "endPos": 36,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "store \"_p.mousex\" in \"word\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 6,
+          "endPos": 26,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 7,
+              "endPos": 15,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 22,
+              "endPos": 25,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "store 123 in \"word\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 6,
+          "endPos": 18,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 6,
+              "endPos": 8,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 14,
+              "endPos": 17,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "store 45 in x",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 6,
+          "endPos": 12,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 6,
+              "endPos": 7,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 12,
+              "endPos": 12,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "take 4 away from integer",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 5,
+          "endPos": 23,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 5,
+              "endPos": 5,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 17,
+              "endPos": 23,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "test gets mouse x position",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 0,
+          "endPos": 3,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 0,
+              "endPos": 3,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "this makes no sense",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "undefined",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "variable work equals 23*78",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 9,
+          "endPos": 25,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 9,
+              "endPos": 12,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 21,
+              "endPos": 25,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "when should i leave home",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "why is it not working?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "word equals \"_p.mousex\"",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 0,
+          "endPos": 22,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 0,
+              "endPos": 3,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 13,
+              "endPos": 21,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "write \"how are up\" to screen at position 43 in horizontal and 89 in vertical",
+      "intent": "p5.Text",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 41,
+          "endPos": 56,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 41,
+              "endPos": 42,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 47,
+              "endPos": 56,
+              "children": []
+            }
+          ]
+        },
+        {
+          "entity": "param",
+          "startPos": 62,
+          "endPos": 75,
+          "children": [
+            {
+              "entity": "value",
+              "startPos": 62,
+              "endPos": 63,
+              "children": []
+            },
+            {
+              "entity": "name",
+              "startPos": 68,
+              "endPos": 75,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "x = 23 * y",
+      "intent": "Var",
+      "entities": [
+        {
+          "entity": "param",
+          "startPos": 0,
+          "endPos": 9,
+          "children": [
+            {
+              "entity": "name",
+              "startPos": 0,
+              "endPos": 0,
+              "children": []
+            },
+            {
+              "entity": "value",
+              "startPos": 4,
+              "endPos": 9,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "versionId": "0.2",
+  "name": "Code",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "patternAnyEntities": [
+    {
+      "name": "RawText",
+      "roles": [],
+      "explicitList": []
+    },
+    {
+      "name": "VarValue",
+      "roles": [],
+      "explicitList": []
+    }
+  ],
+  "regex_entities": [
+    {
+      "name": "Raw",
+      "regexPattern": "\\[(.*?)\\]",
+      "roles": []
+    },
+    {
+      "name": "VarName2",
+      "regexPattern": "[^A-Za-z0-9]+",
+      "roles": []
+    }
+  ],
+  "phraselists": [
+    {
+      "name": "comparison",
+      "mode": false,
+      "words": "is greater than,is less than,equals to,does not equal to,is more than,is equal to,is not,equals,greater than,less than or equal to,greater than or equal to,less than",
+      "activated": true,
+      "enabledForAllModels": false
+    }
+  ],
+  "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "[\"][']{VarName2}[\"]['] equal[s] [to] {p5Variables}",
+      "intent": "Var"
+    },
+    {
+      "pattern": "{Raw}",
+      "intent": "Code"
+    },
+    {
+      "pattern": "write [on image] ['][\"]{RawText}[\"][']",
+      "intent": "p5.Text"
+    },
+    {
+      "pattern": "say [\"]{RawText}[\"] [at [position] {param} and {param}]",
+      "intent": "p5.Text"
+    },
+    {
+      "pattern": "store {VarValue} in [\"]{VarName2}[\"]",
+      "intent": "Var"
+    },
+    {
+      "pattern": "[make] variable [\"]{VarName2}[\"] equals [to] [\"]{VarValue}[\"]",
+      "intent": "Var"
+    },
+    {
+      "pattern": "print [to screen] ['][\"]{RawText}[\"][']",
+      "intent": "p5.Text"
+    },
+    {
+      "pattern": "[let] [var] [\"]{VarName2}[\"] = {VarValue}",
+      "intent": "Var"
+    },
+    {
+      "pattern": "[let] [var] [\"]{VarName2}[\"] = {p5Variables}",
+      "intent": "Var"
+    },
+    {
+      "pattern": "[\"][']{VarName2}[\"]['] equal[s] [to] {VarValue}",
+      "intent": "Var"
+    }
+  ],
+  "settings": []
+}

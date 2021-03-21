@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myo p5 Editor</title>
+    <link rel="icon" type="image/png" href="assets/fav.png" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="main-section">
+
+            <div id="right-section">
+                <div id="container" class="example-container">
+                </div>
+            </div>
+
+            <div id="left-section">
+                
+                <div class="nav-bar">
+                    <!-- Title -->
+                    <div id="logo-bar">
+                        <a href="https://myotics.com">
+                            <image id="logo" src="assets/myoLogoBlur.svg" height="40px">
+                        </a>
+                    </div>
+                    <div id="button-bar">
+                        <!-- Control -->
+                        <button id="play">► Run</button>
+                        <button id="sign-in">Sign In</button>
+                    </div>
+                </div>
+
+                <div id="editor">
+                    <p>Hello World!</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br></p>
+                </div>
+                
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script src="assets/main.js"></script>
+    <script src="assets/myo-code.js"></script>
+    <script src="assets/editor.js"></script>
+
+
+</body>
+
+</html>
