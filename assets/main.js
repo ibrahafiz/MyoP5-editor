@@ -40,10 +40,13 @@ function play() {
 
     var str = quill.getText();
     //var result = str.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
-    var result = str.split('\n').slice(0,-1);
-    directLuis(result);
+    var result = str.split('\n');
+    var filtered = result.filter(function (el) {
+        return el != null && el != "";
+      });
+    directLuis(filtered);
     
-    console.log(result);
+    console.log(filtered);
 }
 
 var ready = (callback) => {
@@ -64,7 +67,7 @@ ready(() => {
         quill.root.innerHTML = prev;
         setTimeout(function(){
             play();
-        }, 100);
+        }, 1);
     }
 
     quill.on('selection-change', function(range, oldRange, source) {
@@ -74,7 +77,7 @@ ready(() => {
                 clearTimeout(timer);
                 timer = setTimeout(function(){
                     localStorage.setItem('last-state', quill.root.innerHTML);
-                    play();
+                    //play();
                 }, 3000);
                 changed = false;
             }
@@ -96,7 +99,7 @@ ready(() => {
             changed = true;
             timer = setTimeout(function(){
                 localStorage.setItem('last-state', quill.root.innerHTML);
-                play();
+                //play();
             }, 8000);
           console.log("A user action triggered this change.");
         }
@@ -111,6 +114,13 @@ ready(() => {
         location.href="https://myocode.azurewebsites.net/.auth/login?post_login_redirect_url=http://127.0.0.1:5500/main.html"
     });
     
+    document.addEventListener("keydown", function(e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+          e.preventDefault();
+          localStorage.setItem('last-state', quill.root.innerHTML);
+          play();
+        }
+      }, false);
     //loggedIn();
 });
 

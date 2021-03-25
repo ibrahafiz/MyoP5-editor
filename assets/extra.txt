@@ -520,3 +520,72 @@ function resizeIframe(obj) {
 //const type = ydoc.getText('quill');
 
 var forceTranslation = true;
+
+
+#####################################################
+
+
+function convertToCode(lines) {
+    
+    dat = "{'code':'" + lines + "'}";
+    axios.post("https://localhost:7072/api/HttpExample", dat)
+            .then((response) => {
+                console.log(response);
+                
+            }, (error) => {
+                alert("There was an error translating from another language. The current default is set to English.")
+                
+            })
+
+    let jsCode = "";
+    /*
+    Promise.all(promises).then(() => {
+        let q = null;
+        jsCode = "_p.setup = function() {" + getDim('create')
+        jsCode += "try {"
+        console.log(results)
+        for (var i = 0; i < pos; i++) {
+            for (var j = 0; i < results.length; j++) {
+                if (typeof results[j] === 'string' || results[j] instanceof String) {
+                    if (results[j] == newLines[i]) {
+                        q = results[j];
+                    }
+                }
+                else if (results[j].data.query == newLines[i]) {
+                    q = results[j].data;
+                    break;
+                }
+            }
+            jsCode += processJSON(q);
+        }
+        jsCode += "} catch(err) { alert('Something went wrong when I was starting ...') };\n";
+        jsCode += "};";
+
+        jsCode += " _p.draw = function() {\n"
+        jsCode += "try {"
+        for (var i = pos; i < num; i++) {
+            for (var j = 0; i < results.length; j++) {
+                if (typeof results[j] === 'string' || results[j] instanceof String) {
+                    if (results[j] == newLines[i]) {
+                        q = results[j];
+                    }
+                }
+                else if (results[j].data.query == newLines[i]) {
+                    q = results[j].data;
+                    break;
+                }
+            }
+            jsCode += processJSON(q);
+        }
+        jsCode += "} catch(err) { alert('Something went wrong when I was looping ...'); _p.noLoop(); };\n";
+        jsCode += "};\n_p.windowResized = function() {\n\tgetDim('resize')\n" + getDim('resize') + "}\n";
+        // run the code
+
+        newP5(jsCode);
+        console.log(js_beautify(jsCode));
+        
+
+    });
+    */
+}
+

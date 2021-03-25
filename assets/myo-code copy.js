@@ -2,8 +2,6 @@ var myp5;
 
 var p5x = 0;
 var p5y = 0;
-var cursor = 0;
-var varStorage = [];
 
 function getDim(mode) {
     let x = document.getElementById('right-section');
@@ -15,7 +13,6 @@ function getDim(mode) {
 
 function directLuis(newLines) {
     newLines = newLines.filter(item => item);
-    var newerLines = newLines;
 
     num = newLines.length;
     console.log(newLines);
@@ -32,26 +29,10 @@ function directLuis(newLines) {
             results.push(newLines[i]);
             //newLinesTRANS.push(newLines[i]);
         } else {
-
             var temp = localStorage.getItem(newLines[i]);
             if (temp === null) {
-                //alert("No");
-                
-                var string = newLines[i];
-                var pattern = /".*?"/g;
-                var current;
-                while(current = pattern.exec(string)) {
-                    var sid = parseInt(localStorage.getItem('counter')) || 0;
-                    sid++;
-                    newLines[i] = newLines[i].replace('"'+current[0].slice(1,-1)+'"',"varstr "+sid)
-                    //varStorage.push(current[0].slice(1,-1));
-                    localStorage.setItem(sid, current[0].slice(1,-1));
-                    localStorage.setItem('counter', sid);
-                }
-
-
+                alert("No");
                 const data = "[{'Text':'" + newLines[i] + "'}]";
-                
                 promises.push(
                     axios.post(TRANS_API, data, {headers: TRANS_HEADER}).then((response) => {
                         //console.log(response);
@@ -92,8 +73,7 @@ function directLuis(newLines) {
 
         console.log(newLines);
         let q = null;
-        jsCode = "_p.setup = function() {" + getDim('create');
-        jsCode += "}\n_p.draw = function() {\n"
+        jsCode = "_p.setup = function() {" + getDim('create')
         jsCode += "try {"
         console.log(results);
 
@@ -178,6 +158,26 @@ function newP5(code) {
 
 }
 
+function getColor(param) {
+    let col = [0,0,0];
+    let type = param['p-type'][0];
+    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0],10) : 0); 
+    let unit = (param.hasOwnProperty('p-unit') ? param['p-unit'][0] : '%');
+    
+    if (unit=='%') { val = val*255/100; }
+
+    if (type.includes('red')) {
+        if (val) { col = [val,0,0]; } else { col = [255,0,0]; }
+    }
+    else if (type.includes('green')) {
+        if (val) { col = [0,val,0]; } else { col = [0,255,0]; }
+    }
+    else if (type.includes('blue')) {
+        if (val) { col = [0,0,val]; } else { col = [0,0,255]; }
+    }
+    return col;
+}
+
 function strContains(str, arr, cond=false) {
     for (var i=0;i<arr.length;i++){
         if (!cond && str.includes(arr[i])) {
@@ -190,86 +190,12 @@ function strContains(str, arr, cond=false) {
     return cond;
 }
 
-function getVarStr(param) {
-    try {
-        var id = param['varstr'][0]['id'][0];
-        return localStorage.getItem(id).replace(' ','_');
-    } catch (e) {
-        return 0;
-    }
-}
-
-function getColor(param) {
-    let col = [0,0,0];
-    let type = param['p-type'][0];
-    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0]['p-num'][0],10) : 0); 
-    let unit = (param.hasOwnProperty('p-value') &&  param['p-value'][0].hasOwnProperty('p-unit') ? param['p-value'][0]['p-unit'][0] : '%');
-    var j = getVarStr(param);
-    
-    if (unit=='%') { val = val*255/100; }
-
-    if (type.includes('red')) {
-        if (j!=0) { col = [j,0,0]; }
-        else if (val) { col = [val,0,0]; } else { col = [255,0,0]; }
-    }
-    else if (type.includes('green')) {
-        if (j!=0) { col = [0,j,0]; }
-        else if (val) { col = [0,val,0]; } else { col = [0,255,0]; }
-    }
-    else if (type.includes('blue')) {
-        if (j!=0) { col = [0,0,j]; }
-        else if (val) { col = [0,0,val]; } else { col = [0,0,255]; }
-    }
-    return col;
-}
-
-function getText(param, origin) {
-    let type = param['p-type'][0];
-    let val = (param.hasOwnProperty('p-value') ? parseInt(param['p-value'][0]['p-num'][0],10) : 0); 
-    
-    if (type.includes('varstr')) {
-        origin = localStorage.getItem(val) || origin;
-    }
-    return origin;
-}
-
-/*
-
-var j = getVarStr(param);
-
-    if (strContains(' '+type,[' x ', 'horizontal', 'right', 'left', 'side'])) {
-        if (j!=0) { pos = [j+'-'+origin[0],0]; }
-        else {
-            if (unit=='%'){
-                val = val*p5x/100;
-            } else {
-                ;
-            }
-            pos = [val-origin[0],0];
-        }
-    }
-    else if (strContains(' '+type,[' y ', 'vertical', 'up', 'down'])) {
-        if (j!=0) { pos = [0,j+'-'+origin[0]]; }
-        else {
-            if (unit=='%'){
-                val = val*p5y/100;
-            } else {
-                ;
-            }
-            pos = [0,val-origin[1]];
-        }
-    }
-    return pos;
-
-*/
-
 function getPos(param, origin) {
     let pos = [0,0];
     let type = param['p-type'][0];
-    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0]['p-num'][0],10) : 0); 
-    let unit = (param.hasOwnProperty('p-value') &&  param['p-value'][0].hasOwnProperty('p-unit') ? param['p-value'][0]['p-unit'][0] : '%');
-    
-        
+    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0],10) : 0); 
+    let unit = (param.hasOwnProperty('p-unit') ? param['p-unit'][0] : 'px');
+
     if (strContains(' '+type,[' x ', 'horizontal', 'right', 'left', 'side'])) {
         if (unit=='%'){
             val = val*p5x/100;
@@ -292,9 +218,9 @@ function getPos(param, origin) {
 function getDimen(param) {
     let dim = [0,0];
     let type = param['p-type'][0];
-    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0]['p-num'][0],10) : 0); 
-    let unit = (param.hasOwnProperty('p-value') &&  param['p-value'][0].hasOwnProperty('p-unit') ? param['p-value'][0]['p-unit'][0] : 'px');
-    
+    let val = (param.hasOwnProperty('p-value') ? parseFloat(param['p-value'][0],10) : 0); 
+    let unit = (param.hasOwnProperty('p-unit') ? param['p-unit'][0] : 'px');
+
     if (strContains(type,['width', 'wide'])) {
         if (unit=='%'){
             val = val*p5x/100;
@@ -324,14 +250,23 @@ function getDimen(param) {
 }
 
 function getIntent(name) {
-    if (name.hasOwnProperty('style')) {
-        return Object.getOwnPropertyNames(name['style'][0])[0];
+    if (name.includes('background')) {
+        return 'background';
     }
-    else if (name.hasOwnProperty('shape')) {
-        return Object.getOwnPropertyNames(name['shape'][0])[0];
+    else if (name.includes('circle')) {
+        return 'circle';
     }
-    else if (name.hasOwnProperty('text')) {
-        return Object.getOwnPropertyNames(name['text'][0])[0];
+    else if (name.includes('fill')) {
+        return 'fill';
+    }
+    else if (strContains(name,['rect','square'])) {
+        return 'rect';
+    }
+    else if (strContains(name,['border','color'], true)) {
+        return 'stroke';
+    }
+    else if (strContains(name,['border','thick'], true)) {
+        return 'strokeWeight';
     }
     return '';
 }
@@ -355,87 +290,6 @@ function processJSON(jsn, id) {
     let code = "";
     let arr = [];
 
-    var nme;
-    if (entity.hasOwnProperty('variable')) { entity.variable.forEach(function (item, index) {
-        
-        try {
-            var vcode = " var ";
-            nme = localStorage.getItem(item.varstr[0].id[0]).replace(' ','_');
-            vcode += nme + " = ";
-            
-            if (entity.hasOwnProperty('p5-var')) {
-                var m = entity['p5-var'][0];
-                if (m.hasOwnProperty('mouseX')) {
-                    vcode += '_p.mouseX';
-                }
-                else if (m.hasOwnProperty('mouseY')) {
-                    vcode += '_p.mouseY';
-                }
-            } else {
-            item.action.forEach(function (item3, index) { 
-                if (item3.hasOwnProperty('operation')) {
-                    var i = item3.operation[0];
-                    if (i.hasOwnProperty('add')){
-                        vcode += " + ";
-                    }
-                    else if (i.hasOwnProperty('subtract')){
-                        vcode += " - ";
-                    }
-                    else if (i.hasOwnProperty('multiply')){
-                        vcode += " * ";
-                    }
-                    else {
-                        vcode += " + ";
-                    }
-                }
-                if (item3.hasOwnProperty('varstr')){
-                    var j = getVarStr(item3);
-                    vcode += j;
-                }
-                else if (item3.hasOwnProperty('value')){
-                    vcode += item3.value[0].number[0];
-                } else { vcode += '0'; }
-            } )
-            }
-            code += vcode + ';';
-            varStorage.push(nme);
-        } catch (e) {}
-        
-    });}
-
-    if (entity.hasOwnProperty('condition')) { code += "if ( (false "; entity.condition[0].or.forEach(function (item, index) {
-        code += ") || ( true";
-        if (item.hasOwnProperty('binary')) { item.binary.forEach(function (it, index) {
-            try {
-                code += " && ";
-                if (it.item[0].includes('varstr') && /\d/.test(it.item[0])) {
-                    code += localStorage.getItem(it.item[0].match(/\d+/)[0]).replace(' ','_');
-                }
-                else {
-                    code += it.item[0];
-                }
-                it.compare.forEach(function (item3, index) { 
-                    if (item3.hasOwnProperty('greaterThan')){
-                        code += " > ";
-                    }
-                    else if (item3.hasOwnProperty('lessThan')){
-                        code += " < ";
-                    }
-                    else if (item3.hasOwnProperty('equal')){
-                        code += " == ";
-                    }
-                    if (item3.hasOwnProperty('item2')){
-                        if (item3.item2[0].includes('varstr') && /\d/.test(item3.item2[0])) {
-                            code += localStorage.getItem(item3.item2[0].match(/\d+/)[0]).replace(' ','_');
-                        }
-                        else {
-                            code += item3.item2[0];
-                        }
-                    }
-                } )
-            } catch (e) {}
-        });}
-    }); code += ")) {";}
 
     if (entity.hasOwnProperty('function')) { entity.function.forEach(function (item, index) {
         var starting = entity.$instance.function[index].startIndex;
@@ -447,7 +301,7 @@ function processJSON(jsn, id) {
                 if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
                     
                     var resp = getColor(param);
-                    for (var k=0;k<3;k++) { _color[k] += '+' + resp[k] }
+                    for (var k=0;k<3;k++) { _color[k] += resp[k] }
                 });}
                 jcode += `${_color[0]},${_color[1]},${_color[2]});`;
                 break;
@@ -457,7 +311,7 @@ function processJSON(jsn, id) {
                 if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
                     
                     var resp = getColor(param);
-                    for (var k=0;k<3;k++) { _color[k] += '+' + resp[k] }
+                    for (var k=0;k<3;k++) { _color[k] += resp[k] }
                 });}
                 jcode += `${_color[0]},${_color[1]},${_color[2]});`;
                 break;
@@ -467,7 +321,7 @@ function processJSON(jsn, id) {
                 if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
                     
                     var resp = getColor(param);
-                    for (var k=0;k<3;k++) { _color[k] += '+' + resp[k] }
+                    for (var k=0;k<3;k++) { _color[k] += resp[k] }
                 });}
                 jcode += `${_color[0]},${_color[1]},${_color[2]});`;
                 break;
@@ -475,7 +329,7 @@ function processJSON(jsn, id) {
                 jcode += "_p.strokeWeight(";
                 var _w = 3;
                 if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
-                    _w = (param.hasOwnProperty('p-value') ? parseInt(param['p-value'][0]['p-num'][0],10) : 3); 
+                    _w = (param.hasOwnProperty('p-value') ? parseInt(param['p-value'][0],10) : 3); 
                 });}
                 jcode += `${_w});`;
                 break;
@@ -505,39 +359,13 @@ function processJSON(jsn, id) {
                 });}
                 jcode += `${_pos[0]},${_pos[1]},${_diam[0]},${_diam[1]});`;
                 break;
-            case 'text':
-                jcode += "_p.rectMode(_p.CENTER);_p.text(";
-                var _txt = "write some text here ...";
-                var _pos = [p5x/2,p5y/2];
-                var _diam = [100,100];
-                if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
-                    _txt = getText(param, _txt);
-                    var resp1 = getPos(param, _pos);
-                    console.log(resp1);
-                    var resp2 = getDimen(param, _diam);
-                    for (var k=0;k<2;k++) { _pos[k] += resp1[k] }
-                    for (var k=0;k<2;k++) { _diam[k] += resp2[k] }
-                });}
-                jcode += `"${_txt}",${_pos[0]},${_pos[1]});`;
-                break;
-            case 'size':
-                jcode += "_p.textSize(";
-                var _w = 20;
-                if (item.hasOwnProperty('f-param')) { item['f-param'].forEach(function (param, i) {
-                    _w = (param.hasOwnProperty('p-value') ? parseInt(param['p-value'][0]['p-num'][0],10) : 20); 
-                });}
-                jcode += `${_w});`;
-                break;
             
         }
-        code += jcode;
         arr.push([id, starting, jcode]);
         //console.log(item, index);
     });}
-    if (entity.hasOwnProperty('condition')) { code += "}"};
 
     console.log(arr);
-    return code;
     return arr[0][2];
 
     switch (intent) {
